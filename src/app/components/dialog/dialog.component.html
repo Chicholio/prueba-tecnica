@@ -1,0 +1,75 @@
+<div *ngIf="data.info === 'character'">
+  <mat-dialog-content class="mat-typography" style="overflow-x: hidden;">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{ data.resultChar?.name }}</mat-card-title>
+          <mat-card-subtitle>{{ data.resultChar?.status }}</mat-card-subtitle>
+          <img mat-card-md-image [src]="data.resultChar?.image" [alt]="data.resultChar?.name">
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-divider></mat-divider>
+        <p *ngIf="data.resultChar?.species">Specie: {{ data.resultChar?.species }}</p>
+        <mat-divider></mat-divider>
+        <p *ngIf="data.resultChar?.type">Type: {{ data.resultChar?.type }}</p>
+        <mat-divider></mat-divider>
+        <p *ngIf="data.resultChar?.gender">Gender: {{ data.resultChar?.gender }}</p>
+        <mat-divider></mat-divider>
+        <p *ngIf="data.resultChar?.origin?.name">origin: {{ data.resultChar?.origin?.name }}</p>
+        <mat-divider></mat-divider>
+        <p *ngIf="data.resultChar?.location?.name">origin: {{ data.resultChar?.location?.name }}</p>
+        <mat-divider></mat-divider>
+        <p>Episodes:</p>
+        <ul>
+          <li *ngFor="let episode of data.resultChar?.episode">{{ episode[episode.length - 2] === "/" ? 0 : episode[episode.length - 2] }}{{ episode[episode.length - 1] }}</li>
+        </ul>
+
+      </mat-card-content>
+    </mat-card>
+  </mat-dialog-content>
+</div>
+<div *ngIf="data.info === 'location'">
+  <mat-dialog-content class="mat-typography" style="overflow-x: hidden;">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{ data.resultLoc?.name }}</mat-card-title>
+          <mat-card-subtitle>{{ data.resultLoc?.type }}</mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-divider></mat-divider>
+        <p *ngIf="data.resultLoc?.dimension">Dimension: {{ data.resultLoc?.dimension }}</p>
+        <mat-divider></mat-divider>
+        <p>Residents:</p>
+        <ul>
+          <li *ngFor="let resident of data.resultLoc?.residents">{{ resident[resident.length - 3] === "r" ? 0 : resident[resident.length - 3] === "/" ? 0 : resident[resident.length - 3] }}{{ resident[resident.length - 2] === "r" ? 0 : resident[resident.length - 2] === "/" ?  0 : resident[resident.length - 2] }}{{ resident[resident.length - 1] }}</li>
+        </ul>
+
+      </mat-card-content>
+    </mat-card>
+  </mat-dialog-content>
+</div>
+<div *ngIf="data.info === 'episode'">
+  <mat-dialog-content class="mat-typography" style="overflow-x: hidden;">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{ data.resultEpi?.name }}</mat-card-title>
+          <mat-card-subtitle>{{ data.resultEpi?.episode }}</mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-divider></mat-divider>
+        <p *ngIf="data.resultEpi?.air_date">Air Date: {{ data.resultEpi?.air_date }}</p>
+        <mat-divider></mat-divider>
+        <p>Residents:</p>
+        <ul>
+          <li *ngFor="let character of data.resultEpi?.characters">{{ character[character.length - 3] === "r" ? 0 : character[character.length - 3] === "/" ? 0 : character[character.length - 3] }}{{ character[character.length - 2] === "r" ? 0 : character[character.length - 2] === "/" ?  0 : character[character.length - 2] }}{{ character[character.length - 1] }}</li>
+        </ul>
+
+      </mat-card-content>
+    </mat-card>
+  </mat-dialog-content>
+</div>

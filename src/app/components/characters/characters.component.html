@@ -1,0 +1,23 @@
+<div style="background-image: url('https://wallpapercave.com/wp/wp4608067.jpg'); background-repeat: no-repeat; width: 100%; height: 95%;">
+  <div style="width: 100%;  height: 93.5%; overflow-x: hidden; overflow-y: auto;">
+    <mat-grid-list cols="4" rowHeight="30%" gutterSize="10px">
+      <mat-grid-tile *ngFor="let character of characters">
+        <mat-card class="example-card" (click)="openDialog(character)">
+          <img mat-card-image [src]="character.image" alt="Photo of a Shiba Inu">
+          <mat-card-header>
+            <mat-card-title>{{ character.name }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ character.status }}</p>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <mat-paginator
+    (page)="searchCharacters($event)"
+    [length]="pages"
+    [pageSize]="20"
+    aria-label="Select page">
+  </mat-paginator>
+</div>

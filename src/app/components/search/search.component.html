@@ -1,0 +1,69 @@
+<div style="width: 100%; height: 95%; display: flex; flex-direction: column; align-items: center;">
+  <img src="../../../assets/images/nombre.png" alt="" width="50%">
+  <br>
+  <input #txtInput type="text" style="width: 30%;" placeholder="Search character, episode, place..." (keyup.enter)="searchCharEpiLoc(txtInput.value)">
+  <br>
+  <mat-tab-group animationDuration="1000ms" style="width: 95%;">
+    <mat-tab label="Characters">
+      <mat-list role="list">
+        <mat-grid-list cols="4" rowHeight="100px">
+          <mat-grid-tile *ngFor="let character of characters">
+            <mat-list-item role="listitem" style="height: auto;" (click)="openDialogChar(character)">
+              <img [src]="character.image" alt="" width="20%">
+              <p>
+                {{ character.name }} - {{ character.status }}
+              </p>
+            </mat-list-item>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-list>
+      <mat-paginator
+        (page)="searchCharacters($event, txtInput.value, 'char')"
+        [length]="pagesChar"
+        [pageSize]="20"
+        aria-label="Select page"
+        *ngIf="pagesChar >= 20">
+      </mat-paginator>
+    </mat-tab>
+    <mat-tab label="Places">
+      <mat-list role="list">
+        <mat-grid-list cols="4" rowHeight="100px">
+          <mat-grid-tile *ngFor="let location of locations">
+            <mat-list-item role="listitem" style="height: auto; border-bottom: solid white 0.5px; text-align: center; margin: 0 10px;" (click)="openDialogLoc(location)">
+              <p>
+                {{ location.name }} - {{ location.type }}
+              </p>
+            </mat-list-item>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-list>
+      <mat-paginator
+        (page)="searchCharacters($event, txtInput.value, 'loc')"
+        [length]="pagesLoc"
+        [pageSize]="20"
+        aria-label="Select page"
+        *ngIf="pagesLoc >= 20">
+      </mat-paginator>
+    </mat-tab>
+    <mat-tab label="Episodes">
+      <mat-list role="list">
+        <mat-grid-list cols="4" rowHeight="100px">
+          <mat-grid-tile *ngFor="let episode of episodes">
+            <mat-list-item role="listitem" style="height: auto; border-bottom: solid white 0.5px; text-align: center; margin: 0 10px;" (click)="openDialogEpi(episode)">
+              <p>
+                {{ episode.name }} - {{ episode.episode }}
+              </p>
+            </mat-list-item>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-list>
+      <mat-paginator
+        (page)="searchCharacters($event, txtInput.value, 'epi')"
+        [length]="pagesEpi"
+        [pageSize]="20"
+        aria-label="Select page"
+        *ngIf="pagesEpi >= 20">
+      </mat-paginator>
+    </mat-tab>
+  </mat-tab-group>
+</div>
